@@ -1,3 +1,4 @@
+For Mistral Model from Hugginf Face in file main.py
 !pip install langchain
 !pip install torch
 !pip install sentence_transformers
@@ -7,3 +8,9 @@
 !pip -q install accelerate
 !pip install llama-cpp-python
 !pip -q install git+https://github.com/huggingface/transformers
+
+
+For lang-index model in file llama_main.pi
+!pip install llama-index transformers accelerate bitsandbytes
+!pip install tiktoken
+!pip install cohere
