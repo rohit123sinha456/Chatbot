@@ -7,6 +7,8 @@ https://python.langchain.com/docs/integrations/text_embedding/huggingfacehub
 
 https://docs.llamaindex.ai/en/stable/examples/query_engine/SQLRouterQueryEngine.html ( Read )
 
+https://docs.llamaindex.ai/en/stable/examples/low_level/oss_ingestion_retrieval.html
+
 Code Reference :- 
 
 https://colab.research.google.com/drive/1luN8PY8K86XRnlvc1RzprczznZ_rcmox#scrollTo=mRbrmi4xNkRT
