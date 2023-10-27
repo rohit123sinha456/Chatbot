@@ -30,14 +30,14 @@ quantization_config = BitsAndBytesConfig(
 
 
 def read_database_and_store(service_context):
-    database_path = os.path.join(os.getcwd(),"Data","test.db")
+    database_path = os.path.join(os.getcwd(),"DB","test.db")
     engine = create_engine("sqlite:///"+database_path, echo=True)
     sql_database = SQLDatabase(engine)
     sql_query_engine = NLSQLTableQueryEngine(sql_database=sql_database,tables=["doctors_records"],service_context=service_context)
     return sql_query_engine
 
 def read_pdf_data_and_store(folder,service_context):
-    reader = SimpleDirectoryReader(input_files=["./Data/admission_policy.pdf"])
+    reader = SimpleDirectoryReader(input_dir="./Data/")
     data = reader.load_data()
     vector_index = VectorStoreIndex.from_documents(data, service_context=service_context)
     vector_query_engine = vector_index.as_query_engine()

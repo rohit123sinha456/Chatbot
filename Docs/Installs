@@ -9,6 +9,10 @@ For Mistral Model from Hugginf Face in file main.py
 !pip install llama-cpp-python
 !pip -q install git+https://github.com/huggingface/transformers
 
+pip install langchain torch sentence_transformers faiss-cpu huggingface-hub pypdf
+pip -q install accelerate llama-cpp-python
+pip -q install git+https://github.com/huggingface/transformers
+
 
 For lang-index model in file llama_main.pi
 !pip install llama-index transformers accelerate bitsandbytes
