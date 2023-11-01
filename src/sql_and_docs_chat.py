@@ -28,24 +28,23 @@ from llama_index.embeddings import HuggingFaceEmbedding
 #     bnb_4bit_use_double_quant=True,
 # )
 
-
+home_path = "/home/dcsadmin/Documents/Chatbot" # for server
+# home_path = "." # for local
 def read_database_and_store(service_context):
-    database_path = os.path.join(os.getcwd(),"DB","test.db")
+    database_path = os.path.join(home_path,"DB","test.db")
     engine = create_engine("sqlite:///"+database_path, echo=True)
     sql_database = SQLDatabase(engine)
     sql_query_engine = NLSQLTableQueryEngine(sql_database=sql_database,tables=["doctors_records"],service_context=service_context)
     return sql_query_engine
 
 def read_pdf_data_and_store(folder,service_context):
-    reader = SimpleDirectoryReader(input_dir="./Data/")
+    reader = SimpleDirectoryReader(input_dir=folder)
     data = reader.load_data()
     vector_index = VectorStoreIndex.from_documents(data, service_context=service_context)
     vector_query_engine = vector_index.as_query_engine()
     return vector_query_engine
 
 def load_models():
-    home_path = "/home/dcsadmin/Documents/Chatbot" # for server
-    # home_path = "." # for local
     model_path = os.path.join(home_path,"Model","mistral-7b-instruct-v0.1.Q3_K_M.gguf")
     print(model_path)
     llm = LlamaCpp(
@@ -93,7 +92,7 @@ def init_model():
     print("Reading database")
     sql_query_engine = read_database_and_store(service_context)
     print("Reading Document")
-    vector_query_engine = read_pdf_data_and_store("./Data",service_context)
+    vector_query_engine = read_pdf_data_and_store(os.path.join(home_path,"Data"),service_context)
     print("creating query tool")
     sql_tool,vector_tools = create_db_and_doc_query_tool(sql_query_engine,vector_query_engine)
     print("creating Query Engine")
