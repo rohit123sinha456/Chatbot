@@ -49,8 +49,8 @@ def load_models():
     llm = LlamaCpp(
         streaming = True,
         model_path=model_path,#"../Model/mistral-7b-instruct-v0.1.Q3_K_M.gguf",
-        temperature=0.50,
-        n_gpu_layers = 30,
+        temperature=0.70,
+        n_gpu_layers = 8,
         top_p=1,
         verbose=False,
         n_ctx=4096)
