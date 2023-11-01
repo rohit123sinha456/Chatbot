@@ -10,4 +10,4 @@ def starting_url():
     answer = model.query(user_input)
     return "asnwer: " + str(answer)
 
-app.run(host="0.0.0.0", port=8080)
+app.run(host="0.0.0.0")
