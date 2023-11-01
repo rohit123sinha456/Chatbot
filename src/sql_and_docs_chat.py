@@ -50,6 +50,7 @@ def load_models():
         streaming = True,
         model_path=model_path,#"../Model/mistral-7b-instruct-v0.1.Q3_K_M.gguf",
         temperature=0.50,
+        n_gpu_layers = 30,
         top_p=1,
         verbose=False,
         n_ctx=4096)
@@ -80,6 +81,28 @@ def create_db_and_doc_query_tool(sql_query_engine,vector_query_engine):
         "Useful for answering semantic questions about admission policy"),
     )
     return sql_tool,vector_tool
+
+
+def init_model():
+    print("Loading Model..")
+    service_context = load_models()
+    base_embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")#resolve_embed_model("local:BAAI/bge-small-en-v1.5")
+    print("Reading database")
+    sql_query_engine = read_database_and_store(service_context)
+    print("Reading Document")
+    vector_query_engine = read_pdf_data_and_store("./Data",service_context)
+    print("creating query tool")
+    sql_tool,vector_tools = create_db_and_doc_query_tool(sql_query_engine,vector_query_engine)
+    print("creating Query Engine")
+    base_selector = EmbeddingSingleSelector.from_defaults(
+    embed_model=base_embed_model)
+    query_engine = RouterQueryEngine(
+    selector=base_selector.from_defaults(),
+    service_context=service_context,
+    query_engine_tools=([sql_tool,vector_tools]),
+    )
+    return query_engine
+
 
 if __name__ == "__main__":
     print("Loading Model..")
