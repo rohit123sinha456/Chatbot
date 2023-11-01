@@ -2,7 +2,7 @@
 Description=Gunicorn service
 
 [Service]
-ExecStart=/home/dcsadmin/Documents/Chatbot/env/bin/gunicorn -w 3 -b :8100 -t 0 --log-file /home/dcsadmin/Documents/Chatbot/gunicorn.log --chdir /home/dcsadmin/Documents/Chatbot/src/ wsgi:app
+ExecStart=/home/dcsadmin/Documents/Chatbot/env/bin/gunicorn -w 3 -t 0 --log-file /home/dcsadmin/Documents/Chatbot/gunicorn.log --chdir /home/dcsadmin/Documents/Chatbot/src/ wsgi:app
 Restart=always
 RestartSec=5
 
