@@ -44,7 +44,9 @@ def read_pdf_data_and_store(folder,service_context):
     return vector_query_engine
 
 def load_models():
-    model_path = os.path.join(".","Model","mistral-7b-instruct-v0.1.Q3_K_M.gguf")
+    home_path = "/home/dcsadmin/Documents/Chatbot" # for server
+    # home_path = "." # for local
+    model_path = os.path.join(home_path,"Model","mistral-7b-instruct-v0.1.Q3_K_M.gguf")
     print(model_path)
     llm = LlamaCpp(
         streaming = True,
