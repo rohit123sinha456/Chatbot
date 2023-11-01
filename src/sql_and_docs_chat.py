@@ -50,7 +50,8 @@ def load_models():
         streaming = True,
         model_path=model_path,#"../Model/mistral-7b-instruct-v0.1.Q3_K_M.gguf",
         temperature=0.70,
-        n_gpu_layers = 8,
+        n_gpu_layers = 40,
+        n_batch = 512,
         top_p=1,
         verbose=False,
         n_ctx=4096)
