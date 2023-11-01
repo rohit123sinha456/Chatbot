@@ -6,7 +6,7 @@ from llama_index.tools.query_engine import QueryEngineTool
 from llama_index.tools import QueryEngineTool
 import os
 import torch
-from transformers import BitsAndBytesConfig
+# from transformers import BitsAndBytesConfig
 from llama_index.prompts import PromptTemplate
 from llama_index.llms import HuggingFaceLLM
 from llama_index import ServiceContext
@@ -21,12 +21,12 @@ from llama_index.embeddings import resolve_embed_model
 from llama_index.selectors import EmbeddingSingleSelector
 from llama_index.embeddings import HuggingFaceEmbedding
 
-quantization_config = BitsAndBytesConfig(
-    load_in_4bit=True,
-    bnb_4bit_compute_dtype=torch.float16,
-    bnb_4bit_quant_type="nf4",
-    bnb_4bit_use_double_quant=True,
-)
+# quantization_config = BitsAndBytesConfig(
+#     load_in_4bit=True,
+#     bnb_4bit_compute_dtype=torch.float16,
+#     bnb_4bit_quant_type="nf4",
+#     bnb_4bit_use_double_quant=True,
+# )
 
 
 def read_database_and_store(service_context):
