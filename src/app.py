@@ -1,6 +1,9 @@
 import flask
 from sql_and_docs_chat import init_model
+from flask_cors import CORS
+
 app = flask.Flask(__name__)
+CORS(app)
 
 model = init_model()
 @app.route("/", methods=["POST"])
